@@ -17,6 +17,7 @@
                 <th scope="col">Id</th>
                 <th scope="col">Título</th>
                 <th scope="col">Autor</th>
+                <th scope="col">Páginas</th>
                 <th scope="col">Preço</th>
                 <th scope="col">Ação</th>
               </tr>
@@ -30,9 +31,10 @@
                         <th scope="row">{{$books->id}}</th>
                         <td>{{$books->titulo}}</td>
                         <td>{{$user->name}}</td>
+                        <td>{{$books->pages}}</td>
                         <td>{{$books->price}}</td>
                         <td>
-                            <a href="">
+                            <a href="{{url("books/$books->id")}}">
                                 <button class="btn btn-dark">Visualizar</button>
                             </a>
                             <a href="">
