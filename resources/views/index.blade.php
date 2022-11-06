@@ -11,6 +11,7 @@
     </div>
 
     <div class="col-8 m-auto">
+        @csrf
         <table class="table table-striped text-center">
             <thead>
               <tr class="table-dark">
@@ -37,10 +38,10 @@
                             <a href="{{url("books/$books->id")}}">
                                 <button class="btn btn-dark">Visualizar</button>
                             </a>
-                            <a href="">
+                            <a href="{{url("books/$books->id/edit")}}">
                                 <button class="btn btn-primary">Editar</button>
                             </a>
-                            <a href="">
+                            <a href="{{url("books/$books->id")}}" class="js-del">
                                 <button class="btn btn-danger">Deletar</button>
                             </a>
                         </td>
