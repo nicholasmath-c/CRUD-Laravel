@@ -9,14 +9,6 @@ use App\Http\Requests\BookRequest;
 
 class BookController extends Controller
 {
-    private $objUser;
-    private $objBook;
-
-    public function __construct(){
-        $this->objUser=new User();
-        $this->objBook=new Book();
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +16,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        $book=$this->objBook->all();
+        $book=Book::paginate(5);
         return view('index', compact('book'));
     }
 
@@ -35,7 +27,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        $user=$this->objUser->all();
+        $user=User::all();
         return view('create', compact('user'));
     }
 
@@ -47,7 +39,7 @@ class BookController extends Controller
      */
     public function store(BookRequest $request)
     {
-        $cad=$this->objBook->create([
+        $cad=Book::create([
             'titulo'=>$request->titulo,
             'pages'=>$request->pages,
             'price'=>$request->price,
@@ -65,7 +57,7 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        $book=$this->objBook->find($id);
+        $book=Book::find($id);
         return view('show', compact('book'));
     }
 
@@ -77,8 +69,8 @@ class BookController extends Controller
      */
     public function edit($id)
     {
-        $book=$this->objBook->find($id);
-        $user=$this->objUser->all();
+        $book=Book::find($id);
+        $user=User::all();
         return view('create', compact('book', 'user'));
     }
 
@@ -91,7 +83,7 @@ class BookController extends Controller
      */
     public function update(BookRequest $request, $id)
     {
-        $this->objBook->where(['id'=>$id])->update([
+        Book::where(['id'=>$id])->update([
             'titulo'=>$request->titulo,
             'pages'=>$request->pages,
             'price'=>$request->price,
@@ -108,7 +100,7 @@ class BookController extends Controller
      */
     public function destroy($id)
     {
-        $del=$this->objBook->destroy($id);
+        $del=Book::destroy($id);
         return($del)?"sim":"não";
     }
 }
